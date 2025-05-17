@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layouts/Header";
+import { Orbitron, VT323, Audiowide } from "next/font/google";
+import Footer from "@/components/layouts/Footer";
+import SideIndicator from "@/components/layouts/SideIndicator";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const orbitron = Orbitron({
   subsets: ["latin"],
+  variable: "--font-orbitron",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const vt323 = VT323({
   subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-vt323",
+});
+
+const audiowide = Audiowide({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-audiowide",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +35,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${orbitron.variable} ${audiowide.variable} ${vt323.variable} antialiased  relative w-full h-full m-0 p-0`}
       >
-        {children}
+        <div className=" w-full h-full">
+          <video
+            className="fixed top-0 left-0 w-full h-full object-cover z-[-1] opacity-25"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source
+              src="/video/3130182-hd_1920_1080_30fps.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+          <div className="fixed top-0 left-0 w-full h-[100lvh] z-30 flex flex-col">
+            <Header />
+            <SideIndicator />
+            {children}
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );
