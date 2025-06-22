@@ -291,3 +291,33 @@ export const DashedLine = ({ className }: { className: string }) => {
     </svg>
   );
 };
+
+export const ImageBorder = ({ className }: { className: string }) => {
+  return (
+    <svg
+      className={cn("fill-none color-white w-full h-full", className)}
+      width="1072"
+      height="39"
+      viewBox="0 0 1072 39"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g opacity="0.5">
+        <line
+          x1="0.940308"
+          y1="2.33691"
+          x2="1071.99"
+          y2="2.33691"
+          stroke="currentColor"
+        ></line>
+        <line
+          x1="942.226"
+          y1="1.83887"
+          x2="942.226"
+          y2="38.3027"
+          stroke="currentColor"
+        ></line>
+      </g>
+    </svg>
+  );
+};

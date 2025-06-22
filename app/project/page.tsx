@@ -1,8 +1,8 @@
 "use client";
-import { DashedLine, ProjectLine } from "@/asset/svg";
+import { DashedLine, ImageBorder, ProjectLine } from "@/asset/svg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { Fragment, useRef } from "react";
 
 const Project = () => {
   const containerRef = useRef(null);
@@ -17,10 +17,7 @@ const Project = () => {
   return (
     <div className="relative h-full flex justify-center w-full">
       <div className="relative z-0 overflow-hidden">
-        <div
-          
-          className="relative flex justify-center w-screen h-screen p-0"
-        >
+        <div className="relative flex justify-center w-screen h-screen p-0">
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
             <div className="absolute flex h-full left-[calc(330/1920*100*1vw)]">
               <DashedLine className="absolute top-[calc(211/1920*100*1vh)] left-0 w-[calc(17/1920*100*1vw)] h-[71.6svh]" />
@@ -32,30 +29,39 @@ const Project = () => {
             </div>
           </div>
 
-          <div className="relative flex max-h-screen" ref={containerRef}>
-            <div  className="static w-[calc(1070/1920*100*1vw)] ">
-              <div
-                 
-                className="flex flex-col h-max"
-              >
+          <div
+            className="relative flex max-h-screen overflow-scroll"
+            ref={containerRef}
+          >
+            {/* Top fade overlay */}
+            <div className="fixed top-0 left-0 w-full h-64 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none" />
+
+            <div className="static w-[calc(1070/1920*100*1vw)]">
+              <div className="flex flex-col h-max">
                 <motion.div
                   style={{ translateY }}
                   className="flex-none w-full h-full visible opacity-[1]"
                 >
                   {Array.from({ length: 10 }).map((_, index) => (
-                    <Image
-                    key={index}
-                      src={
-                        "https://images.unsplash.com/photo-1742198865450-cf9ce4335a33?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                      }
-                      alt="project"
-                      width={400}
-                      height={400}
-                    />
+                    <Fragment key={index}>
+                      <Image
+                        src={
+                          "https://images.unsplash.com/photo-1742198865450-cf9ce4335a33?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        }
+                        alt="project"
+                        width={400}
+                        height={400}
+                        className="w-full h-auto mb-4"
+                      />
+                      <ImageBorder className="w-full h-full" />
+                    </Fragment>
                   ))}
                 </motion.div>
               </div>
             </div>
+
+            {/* Bottom fade overlay */}
+            <div className="fixed bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
           </div>
         </div>
       </div>
